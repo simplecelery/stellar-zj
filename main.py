@@ -76,7 +76,7 @@ class rmysplugin(StellarPlayer.IStellarPlayerPlugin):
     
     def show(self):
         controls = self.makeLayout()
-        self.doModal('main',800,680,'',controls)        
+        self.doModal('main',730,696,'',controls)        
     
     def makeLayout(self):
         mediagrid_layout = [
@@ -93,7 +93,7 @@ class rmysplugin(StellarPlayer.IStellarPlayerPlugin):
         ]
         controls = [
             {'type':'space','height':5},
-            {'type':'grid','name':'mediagrid','itemlayout':mediagrid_layout,'value':self.medias,'separator':True,'itemheight':200,'itemwidth':130},
+            {'type':'grid','name':'mediagrid','itemlayout':mediagrid_layout,'value':self.medias,'separator':True,'itemheight':308,'itemwidth':180},
             {'group':
                 [
                     {'type':'space'},
@@ -130,9 +130,9 @@ class rmysplugin(StellarPlayer.IStellarPlayerPlugin):
                     {'type':'label','name':'series'},
                     {
                         'group':[
-                            {'type':'link','name':'下载','fontSize':16,'width':50,'vAlign':'center','@click':'onDownClick'},
+                            {'type':'link','name':'下载','fontSize':14,'width':50,'vAlign':'center','@click':'onDownClick'},
                             {'type':'space','width':5},
-                            {'type':'link','name':'播放','fontSize':16,'width':50,'vAlign':'center','@click':'onPlayClick'}
+                            {'type':'link','name':'播放','fontSize':14,'width':50,'vAlign':'center','@click':'onPlayClick'}
                         ]
                     }
                 ],
@@ -143,7 +143,8 @@ class rmysplugin(StellarPlayer.IStellarPlayerPlugin):
             {'type':'space','height':10},
             {
                 'group':[
-                    {'type':'image','name':'mediapicture', 'value':mediainfo['picture'],'width':0.4},
+                    {'type':'space','width':3},
+                    {'type':'image','name':'mediapicture', 'value':mediainfo['picture'],'width':0.3},
                     {'type':'space','width':10},
                     {
                         'group':[
@@ -155,8 +156,8 @@ class rmysplugin(StellarPlayer.IStellarPlayerPlugin):
                         'dir':'vertical'
                     },
                     {'type':'space','width':10}
-                ],
-                'width':0.8
+                ]
+                
             },
             {'type':'space','height':5},
             {'type':'grid','name':'showgrid','itemlayout':show_layout,'value':mediainfo['show'],'separator':True,'itemheight':80,'itemwidth':130}
