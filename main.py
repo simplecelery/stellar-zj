@@ -36,7 +36,7 @@ class rmysplugin(StellarPlayer.IStellarPlayerPlugin):
                     print("Unable to copy file. %s" % e)
                 except:
                     print("Unexpected error:", sys.exc_info())
-        down_url = "https://cdn.jsdelivr.net/gh/nomoodhalashao/my-TV@main/source.json"
+        down_url = "https://g.4ris.xyz/https://raw.githubusercontent.com/nomoodhalashao/my-movie/main/tv_source.json"
         try:
             r = requests.get(down_url,timeout = 5,verify=False) 
             result = r.status_code
@@ -164,7 +164,7 @@ class rmysplugin(StellarPlayer.IStellarPlayerPlugin):
         result,control = self.doModal(mediainfo['title'],680,600,'',controls)
 
     def onDownClick(self, page, listControl, item, itemControl):
-        url = self.allmovidesdata[page][item]
+        url = self.allmovidesdata[page][item]['link']
         self.player.download(url)
     
     def onPlayClick(self, page, listControl, item, itemControl):
