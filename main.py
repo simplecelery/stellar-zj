@@ -217,22 +217,24 @@ class rmysplugin(StellarPlayer.IStellarPlayerPlugin):
     def loading(self, stopLoading = False):
         if hasattr(self.player,'loadingAnimation'):
             self.player.loadingAnimation('main', stop=stopLoading)
-'''
+
     def onPlayerSearch(self, dispatchId, searchId, wd, limit):
         # 播放器搜索异步接口
         try:
-            result = [{
-                "name": item["title"],
-                "pic": item["picture"],
-                "summary": item["info"],
-                "pub_date": '',
-                "urls": [['播放', item['show']]]
-            } for item in self.source if wd in item['title']][:limit]
+            result = []
+            for item in self.source :
+                if item['title'].find(wd) >= 0:
+                    serarr = []
+                    for series in item['show']:
+                        newser = [series['series'],series['link']]
+                        serarr.append(newser)
+                    result.append({"name": item["title"],"pic": item["picture"],"summary": item["info"],"pub_date": '',"urls": serarr})
+            print('zj')
             print(result)
             self.player.dispatchResult(dispatchId, searchId=searchId, wd=wd, result=result)
         except:
             self.player.dispatchResult(dispatchId, searchId=searchId, wd=wd, result=[])
-'''
+
 
 def newPlugin(player:StellarPlayer.IStellarPlayer,*arg):
     plugin = rmysplugin(player)
